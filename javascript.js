@@ -14,16 +14,48 @@ function playRound(playerSelection, computerSelection){
   if(computerSelection == playerSelection
   || computerSelection == playerSelection
   || computerSelection == playerSelection ){
-    console.log("Tie!");
+    return 1;
   } else if(computerSelection == "rock" && playerSelection == "scissors"
-  || computerSelection == "paper" && playerSelection == "rock" 
-  || computerSelection == "scissors" && playerSelection == "paper"){
-    console.log(`You lose! ${computerSelection} beats ${playerSelection}`);
+         || computerSelection == "paper" && playerSelection == "rock" 
+         || computerSelection == "scissors" && playerSelection == "paper"){
+    return 2;
   } else{
-    console.log(`You win! ${playerSelection} beats ${computerSelection}`);
+    return 3;
   }
 }
 
-const playerSelection = "rock".toLowerCase();
-const computerSelection = getComputerChoice();
-console.log(playRound(playerSelection, computerSelection));
+function getWinner(playerScore, computerScore){
+  if(playerScore > computerScore){
+    return "You won!";
+  } else if( computerScore > playerScore){
+    return "You lost!";
+  } else {
+    return "Tie";
+  }
+}
+
+function game(){
+  let playerScore = 0;
+  let computerScore = 0;
+
+  for(let i = 0; i < 5; i++){
+    const playerSelection = prompt("Enter a choice: rock, paper, or scissors ").toLowerCase();
+    const computerSelection = getComputerChoice();
+    const results = playRound(playerSelection, computerSelection);
+    if(results == 1){
+      console.log(`Tie`);
+      console.log(`Player: ${playerScore} Computer: ${computerScore}`);
+    } else if( results == 2){
+      console.log(`Round lost! ${computerSelection} beats ${playerSelection}`);
+      computerScore++;
+      console.log(`Player: ${playerScore} Computer: ${computerScore}`);
+    } else{
+      console.log(`Round won! ${playerSelection} beats ${computerSelection}`);
+      playerScore++;
+      console.log(`Player: ${playerScore} Computer: ${computerScore}`);
+    }
+  }
+  return getWinner(playerScore, computerScore);
+}
+
+console.log(game());
