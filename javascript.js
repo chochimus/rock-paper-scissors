@@ -9,18 +9,3 @@ function getComputerChoice(){
       return "scissors";
   }
 }
-
-let r = 0;
-let p = 0;
-let s = 0;
-for(let i = 0; i < 1000; i++){
-  let answer = getComputerChoice();
-  if(answer == "rock"){
-    r++;
-  } else if(answer == "paper"){
-    p++;
-  } else {
-    s++;
-  }
-}
-console.log("rock % : " + r/1000 + " paper % : " + p/1000 + "scissor % : " + s/1000);
