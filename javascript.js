@@ -25,20 +25,14 @@ function playRound(playerSelection, computerSelection){
 }
 
 function getWinner(playerScore, computerScore){
-  if(playerScore > computerScore){
-    return "You won!";
-  } else if( computerScore > playerScore){
-    return "You lost!";
-  } else {
-    return "Tie";
-  }
+  return (playerScore > computerScore) ? "Game over, You won!" : "Game over, You lost!";
 }
 
 function game(){
   let playerScore = 0;
   let computerScore = 0;
 
-  for(let i = 0; i < 5; i++){
+  while(playerScore < 5 && computerScore < 5){
     const playerSelection = prompt("Enter a choice: rock, paper, or scissors ").toLowerCase();
     const computerSelection = getComputerChoice();
     const results = playRound(playerSelection, computerSelection);
