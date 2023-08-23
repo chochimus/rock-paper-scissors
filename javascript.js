@@ -1,11 +1,15 @@
 function getComputerChoice(){
+  const computerChoiceContent = document.getElementById('computer-choice');
   let randomNum = Math.floor(Math.random() * 3) + 1;
   switch(randomNum){
     case 1:
+      computerChoiceContent.textContent = `🪨`;
       return "rock";
     case 2:
+      computerChoiceContent.textContent = `📄`;
       return "paper";
     case 3:
+      computerChoiceContent.textContent = `✂️`;
       return "scissors";
   }
 }

@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
 
+  <link rel="stylesheet" type="text/css" href="styles.css">
   <script src="javascript.js" defer></script>
 </head>
 <body>
@@ -13,16 +14,21 @@
       <div class="player-name">Player</div>
       <div id="player-score">0</div>
     </div>
+    <div class="dash">-</div>
     <div class="computer">
       <div class="computer-name">Computer</div>
       <div id="computer-score">0</div>
     </div>
   </div>
-  <div id="computer-choice"></div>
+  <div class="computer-decision">Computer choice:
+    <div id="computer-choice"></div>
+  </div>
+  <div class="buttons">
+    <button id="rock">🪨</button>
+    <button id="paper">📄</button>
+    <button id="scissors">✂️</button>
+  </div>
   <div id="results"></div>
-  <button id="rock">rock</button>
-  <button id="paper">paper</button>
-  <button id="scissors">scissors</button>
   <div id="final-results"></div>
 </body>
 </html>
