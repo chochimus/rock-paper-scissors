@@ -16,40 +16,48 @@ function playRound(event){
   if(computerSelection == playerSelection
   || computerSelection == playerSelection
   || computerSelection == playerSelection ){
-    updateScore('tie');
+    updateScore('tie', playerSelection, computerSelection);
   } else if(computerSelection == "rock" && playerSelection == "scissors"
          || computerSelection == "paper" && playerSelection == "rock" 
          || computerSelection == "scissors" && playerSelection == "paper"){
-    updateScore('computer-win');
+    updateScore('computer-win', playerSelection, computerSelection);
   } else{
-    updateScore('player-win');
+    updateScore('player-win', playerSelection, computerSelection);
   }
 }
 
-function updateScore(result){
+function updateScore(outcome, playerSelection, computerSelection){
+  const results = document.querySelector('#results');
   const playerScore = document.getElementById('player-score');
   let playerValue = Number(playerScore.textContent);
   const computerScore = document.getElementById('computer-score');
   let computerValue = Number(computerScore.textContent);
 
-  if(result === 'computer-win'){
+  if(outcome === 'computer-win'){
     computerValue++;
     if(computerValue === 5){
       getWinner(playerValue, computerValue);
     }
     computerScore.textContent = computerValue;
-  } else if(result === 'player-win'){
+    results.textContent = `round lost! ${computerSelection} beats ${playerSelection}`;
+  } 
+  else if(outcome === 'player-win'){
     playerValue++;
+    playerScore.textContent = playerValue;
+    results.textContent = `round won! ${playerSelection} beats ${computerSelection}`;
     if(playerValue === 5){
       getWinner(playerValue, computerValue);
     }
-    playerScore.textContent = playerValue;
+  }
+  else{
+    results.textContent = `it was a tie!`;
   }
 }
 
 function getWinner(playerScore, computerScore){
   document.querySelectorAll('button').forEach((button) => button.removeEventListener('click', playRound));
-  console.log((playerScore > computerScore) ? "Game over, You won!" : "Game over, You lost!");
+  const results = document.querySelector('#final-results');
+  results.textContent = (playerScore > computerScore) ? "Game over, You won!" : "Game over, You lost!";
 }
 
 document.querySelectorAll('button').forEach((button) => button.addEventListener('click', playRound));
