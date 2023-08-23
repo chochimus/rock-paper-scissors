@@ -34,21 +34,22 @@ function updateScore(result){
 
   if(result === 'computer-win'){
     computerValue++;
-    if(computerValue === 6){
-      getWinner(playerValue, computerValue--);
+    if(computerValue === 5){
+      getWinner(playerValue, computerValue);
     }
     computerScore.textContent = computerValue;
   } else if(result === 'player-win'){
     playerValue++;
-    if(playerValue === 6){
-      getWinner(playerValue--, computerValue);
+    if(playerValue === 5){
+      getWinner(playerValue, computerValue);
     }
     playerScore.textContent = playerValue;
   }
 }
 
 function getWinner(playerScore, computerScore){
-  return (playerScore > computerScore) ? "Game over, You won!" : "Game over, You lost!";
+  document.querySelectorAll('button').forEach((button) => button.removeEventListener('click', playRound));
+  console.log((playerScore > computerScore) ? "Game over, You won!" : "Game over, You lost!");
 }
 
 document.querySelectorAll('button').forEach((button) => button.addEventListener('click', playRound));
